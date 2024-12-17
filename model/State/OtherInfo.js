@@ -43,7 +43,7 @@ function getPluginNum(e) {
   // 获取插件数量插件包目录包含package.json才被视为一个插件包
   const dir = "./plugins"
   const dirArr = fs.readdirSync(dir, { withFileTypes: true })
-  const exc = [ "example" ]
+  const exc = ["example"]
   const plugin = dirArr.filter(i =>
     i.isDirectory() &&
     fs.existsSync(path.join(dir, i.name, "package.json")) &&
@@ -72,7 +72,7 @@ function getPluginNum(e) {
 
 export async function getCopyright() {
   const { node, v8, git, redis } = await si.versions("node,v8,git,redis")
-  let v = `Created By ${Version.name}<span class="version">${Version.yunzai}</span> & Yenai-Plugin<span class="version">v${Version.ver}</span>`
+  let v = `Created By ${Version.name}<span class="version">${Version.yunzai}</span> & Yenai-Plugin-Cat<span class="version">v${Version.ver}</span>`
   v += "<br>"
   v += `Node <span class="version">v${node}</span> & V8 <span class="version">v${v8}</span>`
   if (git) {

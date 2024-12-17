@@ -4,7 +4,7 @@ import { Plugin_Path } from "../components/index.js"
 let Jimp = null
 try {
   Jimp = (await import("jimp")).default
-} catch {}
+} catch { }
 export default new class {
   constructor() {
     this.folderPath = `${Plugin_Path}/resources/memes`
@@ -23,7 +23,7 @@ export default new class {
     const buff = await background.getBufferAsync(Jimp.MIME_JPEG)
     // debug
     let kb = (buff.length / 1024).toFixed(2) + "kb"
-    logger.debug(`[Yenai-Plugin][memes]生成zan ${kb}`)
+    logger.debug(`[Yenai-Plugin-Cat][memes]生成zan ${kb}`)
     return buff
   }
 
@@ -40,7 +40,7 @@ export default new class {
     const buff = await background.getBufferAsync(Jimp.MIME_JPEG)
     // debug
     let kb = (buff.length / 1024).toFixed(2) + "kb"
-    logger.debug(`[Yenai-Plugin][memes]生成crawl ${kb}`)
+    logger.debug(`[Yenai-Plugin-Cat][memes]生成crawl ${kb}`)
     return buff
   }
 
@@ -55,7 +55,7 @@ export default new class {
     const buff = await images.getBufferAsync(Jimp.MIME_JPEG)
     // debug
     let kb = (buff.length / 1024).toFixed(2) + "kb"
-    logger.debug(`[Yenai-Plugin][memes]生成ganyu ${kb}`)
+    logger.debug(`[Yenai-Plugin-Cat][memes]生成ganyu ${kb}`)
     return buff
   }
 
@@ -65,7 +65,7 @@ export default new class {
    * @returns {string} - 图片路径
    */
   getRandomImagePath(folderPath) {
-  // 读取文件夹里的所有文件
+    // 读取文件夹里的所有文件
     const files = fs.readdirSync(folderPath)
 
     // 过滤出图片文件

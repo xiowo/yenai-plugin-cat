@@ -15,7 +15,9 @@
 <div class="info-box">
   <div class="head-box type{{bgType}}">
     <div class="title">{{helpCfg.title||"使用帮助"}}</div>
-    <div class="label">{{helpCfg.subTitle || "Yunzai-Bot & Yenai-Plugin"}}</div>
+    <div class="label">
+      {{helpCfg.subTitle || "Yunzai-Bot & Yenai-Plugin-Cat"}}
+    </div>
   </div>
 </div>
 
@@ -33,15 +35,15 @@
         <span class="help-desc">{{help.desc}}</span>
       </div>
       {{if idx%colCount === colCount-1 && idx>0 && idx< len-1}} </div>
-        <div class="tr">
+    <div class="tr">
           {{/if}}
           {{/each}}
           <% for(let i=(len-1)%colCount; i< colCount-1 ; i++){ %>
-            <div class="td"></div>
-            <% } %>
-        </div>
+      <div class="td"></div>
+      <% } %>
     </div>
-    {{/if}}
   </div>
+  {{/if}}
+</div>
   {{/each}}
   {{/block}}

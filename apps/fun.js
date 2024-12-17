@@ -1,8 +1,4 @@
-import { pandadiuType, xiurenTypeId } from "../constants/fun.js"
-import { common, funApi, uploadRecord } from "../model/index.js"
-
-/** 开始执行文案 */
-const START_EXECUTION = "椰奶产出中......"
+// MortalCat 🦊
 
 export class Fun extends plugin {
   constructor(e) {
@@ -12,46 +8,15 @@ export class Fun extends plugin {
       priority: 500,
       rule: [
         {
-          reg: "^#唱歌$",
-          fnc: "Sing"
-        },
-        {
           reg: "^#支付宝到账",
           fnc: "ZFB"
         },
         {
-          reg: "^#(([\u4e00-\u9fa5]{2,6})-)?([\u4e00-\u9fa5]{2,6})?翻译(.*)$",
-          fnc: "youdao"
-        },
-        {
           reg: "github.com/[a-zA-Z0-9-]{1,39}/[a-zA-Z0-9_-]{1,100}",
           fnc: "GH"
-        },
-        {
-          reg: "^#?coser$",
-          fnc: "coser"
-        },
-        {
-          reg: `^#(${Object.keys(pandadiuType).join("|")})?acg`,
-          fnc: "acg"
-        },
-        {
-          reg: `^#来点(${Object.keys(xiurenTypeId).join("|")})$`,
-          fnc: "xiuren"
         }
       ]
     })
-  }
-
-  /**
-   * 随机唱鸭
-   * @param e
-   */
-  async Sing(e) {
-    let data = await funApi.randomSinging()
-    if (data.error) return e.reply(data.error)
-    await e.reply(await uploadRecord(data.audioUrl, 0, false))
-    await e.reply(data.lyrics)
   }
 
   /**
@@ -67,26 +32,6 @@ export class Fun extends plugin {
       return e.reply("数字大小超出限制，支持范围为0.01~999999999999.99")
     }
     e.reply([ segment.record(`https://mm.cqu.cc/share/zhifubaodaozhang/mp3/${amount}.mp3`) ])
-  }
-
-  /**
-   * 有道翻译
-   * @param e
-   */
-  async youdao(e) {
-    const msg = e.msg.match(/#(([\u4e00-\u9fa5]{2,6})-)?([\u4e00-\u9fa5]{2,6})?翻译(.*)/)
-    // 如果是在群聊中回复，则获取上一条消息作为翻译内容
-    if (e.source) {
-      const source = e.isGroup
-        ? (await e.group.getChatHistory(e.source.seq, 1)).pop()
-        : (await e.friend.getChatHistory(e.source.time, 1)).pop()
-
-      msg[4] = source.message
-        .filter(item => item.type === "text")
-        .map(item => item.text).join("")
-    }
-    const results = await funApi.youdao(msg[4], msg[3], msg[2])
-    e.reply(results, true)
   }
 
   /**
@@ -107,59 +52,5 @@ export class Fun extends plugin {
       // const [user, repo] = [res[1], res[2].split('#')[0]]
       // e.reply(segment.image(`${api}/${id}/${user}/${repo}`))
     }
-  }
-
-  /**
-   * Coser
-   * @param e
-   */
-  async coser(e) {
-    if (!common.checkSeSePermission(e)) return false
-
-    e.reply(START_EXECUTION)
-    await funApi.coser()
-      .then(res => common.recallSendForwardMsg(e, res))
-      .catch(err => common.handleException(e, err))
-  }
-
-  /**
-   * cos/acg搜索
-   * @param e
-   */
-  async acg(e) {
-    if (!common.checkSeSePermission(e)) return false
-    e.reply(START_EXECUTION)
-    const reg = new RegExp(`^#(${Object.keys(pandadiuType).join("|")})?acg(.*)$`)
-    const type = e.msg.match(reg)
-    await funApi.pandadiu(type[1], type[2])
-      .then(res => common.recallSendForwardMsg(e, res))
-      .catch(err => common.handleException(e, err))
-  }
-
-  /**
-   * 萌堆
-   * @param e
-   */
-  async mengdui(e) {
-    if (!common.checkSeSePermission(e, "sesepro")) return false
-    // 开始执行
-    e.reply(START_EXECUTION)
-    let regRet = e.msg.match(/#?来点神秘图(s)?(.*)/)
-    await funApi.mengdui(regRet[2], regRet[1])
-      .then(res => common.recallSendForwardMsg(e, res))
-      .catch(err => common.handleException(e, err))
-  }
-
-  /**
-   * 秀人
-   * @param e
-   */
-  async xiuren(e) {
-    if (!common.checkSeSePermission(e, "pro")) return false
-    // 开始执行
-    e.reply(START_EXECUTION)
-    await funApi.xiuren(e.msg.replace(/#?来点/, ""))
-      .then(res => common.recallSendForwardMsg(e, res))
-      .catch(err => common.handleException(e, err))
   }
 }

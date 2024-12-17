@@ -6,7 +6,7 @@ import { Config } from "./components/index.js"
  *  https://antdv.com/components/overview-cn/
  */
 const Path = process.cwd()
-const Plugin_Path = `${Path}/plugins/yenai-plugin`
+const Plugin_Path = `${Path}/plugins/yenai-plugin-cat`
 
 /**
  *
@@ -14,11 +14,11 @@ const Plugin_Path = `${Path}/plugins/yenai-plugin`
 export function supportGuoba() {
   return {
     pluginInfo: {
-      name: "yenai-plugin",
-      title: "Yenai-Plugin",
+      name: "yenai-plugin-cat",
+      title: "Yenai-Plugin-Cat",
       author: "@yeyang52",
-      authorLink: "https://gitee.com/yeyang52",
-      link: "https://gitee.com/yeyang52/yenai-plugin",
+      authorLink: "https://gitee.com/xiowo",
+      link: "https://gitee.com/xiowo/yenai-plugin-cat.git",
       isV3: true,
       isV2: false,
       description: "提供对Bot的一些便捷操作",

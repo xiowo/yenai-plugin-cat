@@ -1,5 +1,5 @@
 {
-  "name": "yenai-plguin",
+  "name": "yenai-plguin-cat",
   "version": "1.4.0",
   "description": "Yunzai-Bot插件扩展",
   "main": "index.js",
@@ -12,11 +12,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/yeyang52/yenai-plugin.git"
+    "url": "https://gitee.com/xiowo/yenai-plugin-cat.git"
   },
   "keywords": [
     "Yunzai-Bot",
-    "yenai-plguin"
+    "yenai-plguin-cat"
   ],
   "author": "yeyang",
   "license": "GPL-3.0",

@@ -1,72 +1,52 @@
+> 这个精简版的 yenai-plugin 由 MortalCat 维护自用，🐱🐱 暴力删减可能会有一些问题(இωஇ)
+
 > 如果您觉得我们的项目有帮助，请给我们一个星星（Starred）！您的支持对我们非常重要，将激励我们不断改进和提供更好的内容。谢谢！🙏
 
 <img src="resources/img/logo.gif" alt="看板娘" width = "200" align="right">
 
 <div align="left">
 
-# Yenai-Plugin
+# Yenai-Plugin-Cat
 
-🐑 **_Yenai-Plugin是一个Yunzai-Bot的扩展插件，提供对Bot的一些便捷操作。_**<img src="https://media.giphy.com/media/mGcNjsfWAjY5AEZNw6/giphy.gif" width="50">
-
-<br><img src="https://count.getloli.com/get/@:yenai-plugin?theme=rule34" /><br>
-
-
-[![deploy_docs](https://github.com/yeyang52/yenai-plugin/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/yeyang52/yenai-plugin/actions/workflows/deploy-docs.yml)
-[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=yenai-plugin-eta)](https://vercel.com/yeyang52/yenai-plugin)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fbae5073-1b4c-4c62-a818-6cc8e100d336/deploy-status)](https://app.netlify.com/sites/yenai-plugin/deploys)
-
-![Nodejs](https://img.shields.io/badge/-Node.js-3C873A?style=flat&logo=Node.js&logoColor=white) 
-![JavaScript](https://img.shields.io/badge/-JavaScript-eed718?style=flat&logo=javascript&logoColor=ffffff)
-[![license](https://img.shields.io/github/license/yeyang52/yenai-plugin.svg?style=flat&logo=gnu)](https://github.com/yeyang52/yenai-plugin/blob/master/LICENSE) 
-[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
-[![YunzaiBot](https://img.shields.io/badge/Yunzai-V3.0.0-black?style=flat&logo=dependabot)](https://gitee.com/Le-niao/Yunzai-Bot) 
-
-![GitHub last commit](https://img.shields.io/github/last-commit/yeyang52/yenai-plugin)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/yeyang52/yenai-plugin)
-![Lines of code](https://img.shields.io/tokei/lines/github/yeyang52/yenai-plugin)
-
-[![Gitee star](https://gitee.com/yeyang52/yenai-plugin/badge/star.svg?theme=dark)](https://gitee.com/yeyang52/yenai-plugin/stargazers)
-[![Gitee fork](https://gitee.com/yeyang52/yenai-plugin/badge/fork.svg?theme=dark)](https://gitee.com/yeyang52/yenai-plugin/members)
-[![GitHub stars](https://img.shields.io/github/stars/yeyang52/yenai-plugin)](https://github.com/yeyang52/yenai-plugin/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yeyang52/yenai-plugin)](https://github.com/yeyang52/yenai-plugin/network)
-[![GitHub issues](https://img.shields.io/github/issues/yeyang52/yenai-plugin)](https://github.com/yeyang52/yenai-plugin/issues)
-</div>
-
-<div align="center">
-
-[![Star Trend](https://api.star-history.com/svg?repos=yeyang52/yenai-plugin&type=Timeline)](https://seladb.github.io/StarTrack-js/#/preload?r=yeyang52,yenai-plugin)
-
-</div>
+🐑 **_Yenai-Plugin-Cat 是一个 Yunzai-Bot 的扩展插件，提供对 Bot 的一些便捷操作。_**<img src="https://media.giphy.com/media/mGcNjsfWAjY5AEZNw6/giphy.gif" width="50">
 
 ---
 
 ## 安装教程 💡
 
-请将Yenai-Plugin放置在Yunzai-Bot的plugins目录下，重启Yunzai-Bot后即可使用。
+请将 Yenai-Plugin-Cat 放置在 Yunzai-Bot 的 plugins 目录下，重启 Yunzai-Bot 后即可使用。
 
-1. 推荐使用git进行安装，以方便后续升级。在Yunzai目录打开终端，运行
+1. 推荐使用 git 进行安装，以方便后续升级。在 Yunzai 目录打开终端，运行
 
-- 使用github
-
-```sh
-git clone -b master --depth=1 https://github.com/yeyang52/yenai-plugin.git ./plugins/yenai-plugin
-```
-
-- 使用gitee
+- 使用 github
 
 ```sh
-git clone -b master --depth=1 https://gitee.com/yeyang52/yenai-plugin.git ./plugins/yenai-plugin
+git clone -b master --depth=1 https://github.com/xiowo/yenai-plugin-cat.git ./plugins/yenai-plugin-cat
 ```
 
-1. 安装依赖(可选：不安装依赖将无法使用一些功能)
+- 使用 gitee
+
+```sh
+git clone -b master --depth=1 https://gitee.com/xiowo/yenai-plugin-cat.git ./plugins/yenai-plugin-cat
+```
+
+1. 安装依赖
 
 ```sh
 pnpm install
 ```
 
+2. 必要安装
+
+使用系统状态需安装 systeminformationopen in new window 模块
+
+```sh
+pnpm add systeminformation -w
+```
+
 ## 功能介绍 📖
 
-> Yenai-Plugin为您提供以下功能
+> Yenai-Plugin-Cat 为您提供以下功能
 >
 > Tip：以下只是简单描述功能具体指令请使用 **#椰奶帮助 #椰奶群管帮助 #椰奶设置**查看
 
@@ -83,9 +63,10 @@ pnpm install
 
 - [x] 好友|群 消息
 
-- [x] Bot被禁言
+- [x] Bot 被禁言
 
 Tip：具体可使用 **#椰奶设置** 查看
+
 </details>
 
 <details>
@@ -105,7 +86,6 @@ Tip：具体可使用 **#椰奶设置** 查看
 
 - [x] 增 删 黑/白名单
 
-
 </details>
 
 <details>
@@ -122,41 +102,7 @@ Tip：具体可使用 **#椰奶设置** 查看
 - [x] 同意/拒绝全部好友申请/群邀请
 
 - [x] 查看全部请求
-  
 - [ ] 查看/回添 单向好友
-  
-
-</details>
-
-<details>
-  <summary>娱乐功能</summary>
-
-- [x] 随机唱鸭
-
-- [x] 赞我（支持陌生人点赞）
-
-- [x] coser
-
-- [x] 支付宝到账语音
-
-</details>
-
-<details>
-  <summary>Pixiv功能</summary>
-
-- [x] Pixiv排行榜
-
-- [x] Tag搜图
-
-- [x] Pid搜图
-
-- [x] Uid搜图
-
-- [x] 查看热门Tag
-
-- [x] 查看相关作品
-
-Tip：详情请参考[此教程](https://yenai.trss.me/features/Pixiv.html)
 
 </details>
 
@@ -198,27 +144,21 @@ Tip：详情请参考[此教程](https://yenai.trss.me/features/Pixiv.html)
 - [ ] 黑名单
 
 - [x] 哪个叼毛是龙王
-  
+
 Tip：具体可使用 **#椰奶群管帮助** 查看
+
   </details>
 
 <details>
-  <summary>搜图搜番</summary>
+  <summary>其他功能</summary>
 
-- [x] [saucenao](https://saucenao.com)
-- [x] [whatanime](https://trace.moe)
-- [x] [ascii2d](https://ascii2d.net)
+- [x] GitHub 解析
 
-</details>
+- [x] 赞我（支持陌生人点赞）
 
-<details>
-  <summary>哔咔功能</summary>
-
-- [x] 哔咔搜索
-- [x] 哔咔看本子
+- [x] 支付宝到账语音
 
 </details>
-
 
 <details>
   <summary>图片状态</summary>
@@ -250,8 +190,11 @@ Tip：具体可使用 **#椰奶群管帮助** 查看
 ### 贡献者 ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 感谢这些了不起的人 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -298,23 +241,11 @@ Tip：具体可使用 **#椰奶群管帮助** 查看
 
 ## 友情链接 😊
 
-- [Yunzai-Bot插件索引](https://gitee.com/Hikari666/Yunzai-Bot-plugins-index)
-- [码云镜像库](https://gitee.com/yeyang52/yenai-plugin)
+- [Yunzai-Bot 插件索引](https://gitee.com/yhArcadia/Yunzai-Bot-plugins-index)
 - [Miao-Yunzai](https://gitee.com/yoimiya-kokomi/Miao-Yunzai)
 - [TRSS-Yunzai](https://gitee.com/TimeRainStarSky/Yunzai)
 
 ## 免责声明 ❗
 
-1. 功能仅限内部交流与小范围使用，请勿将Yunzai-Bot及Yenai-Plugin用于任何以盈利为目的的场景.
+1. 功能仅限内部交流与小范围使用，请勿将 Yunzai-Bot 及 Yenai-Plugin-Cat 用于任何以盈利为目的的场景.
 2. 图片与其他素材均来自于网络，仅供交流学习使用，如有侵权请联系，会立即删除.
-
-## 联系方式 <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50">
-
-🐧：746659424
-
-💬：914247840
-
-❤️：[打赏](https://yenai.trss.me/donate.html)
-
-![Alt](https://repobeats.axiom.co/api/embed/42b5a7769074be124bd9ab02456897e37d1581f1.svg "Repobeats analytics image")
-[![椰羊/Yenai-Plugin](https://gitee.com/yeyang52/yenai-plugin/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/yeyang52/yenai-plugin)

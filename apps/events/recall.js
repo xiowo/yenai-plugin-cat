@@ -5,7 +5,7 @@ import { common } from "../../model/index.js"
 const redisKeyPre = "yenai:notice:message"
 const redisKeyPreGroup = redisKeyPre + "Group:"
 const redisKeyPrePrivate = redisKeyPre + "Private:"
-Bot.on?.("message", async(e) => {
+Bot.on?.("message", async (e) => {
   // 判断是否存在消息
   if (!e?.message?.length) return false
   // 判断是否为机器人消息
@@ -18,7 +18,7 @@ Bot.on?.("message", async(e) => {
   if (e.message_type == "group") {
     // 关闭撤回停止存储
     if (Config.getAlone(e.self_id, e.group_id).groupRecall) {
-      // logger.debug(`[Yenai-Plugin]存储群消息${e.group_id}=>${e.message_id}`)
+      // logger.debug(`[Yenai-Plugin-Cat]存储群消息${e.group_id}=>${e.message_id}`)
       // 写入
       await redis.set(
         redisKeyPreGroup + e.message_id,
@@ -29,7 +29,7 @@ Bot.on?.("message", async(e) => {
   } else if (e.message_type == "private") {
     // 关闭撤回停止存储
     if (Config.getAlone(e.self_id).PrivateRecall) {
-      // logger.debug(`[Yenai-Plugin]存储私聊消息${e.user_id}=>${e.message_id}`)
+      // logger.debug(`[Yenai-Plugin-Cat]存储私聊消息${e.user_id}=>${e.message_id}`)
       // 写入
       await redis.set(
         redisKeyPrePrivate + e.message_id,
@@ -40,7 +40,7 @@ Bot.on?.("message", async(e) => {
   }
 })
 
-Bot.on?.("notice.group.recall", async(e) => {
+Bot.on?.("notice.group.recall", async (e) => {
   const bot = e.bot ?? Bot
   // 开启或关闭
   if (!Config.getAlone(e.self_id, e.group_id).groupRecall) return false
@@ -75,7 +75,7 @@ Bot.on?.("notice.group.recall", async(e) => {
   if (e.operator_id != e.user_id) {
     isManage = `撤回管理：${e.group.pickMember(e.operator_id).card}(${e.operator_id})\n`
   }
-  isManage ? logger.info("[Yenai-Plugin]群聊管理撤回") : logger.info("[Yenai-Plugin]群聊撤回")
+  isManage ? logger.info("[Yenai-Plugin-Cat]群聊管理撤回") : logger.info("[Yenai-Plugin-Cat]群聊撤回")
   // 发送的消息
   msg = [
     segment.image(`https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`),
@@ -91,14 +91,14 @@ Bot.on?.("notice.group.recall", async(e) => {
   sendMsg(bot, msg, forwardMsg)
 })
 
-Bot.on?.("notice.friend.recall", async(e) => {
+Bot.on?.("notice.friend.recall", async (e) => {
   if (!Config.getAlone(e.self_id).PrivateRecall) return false
 
   if (e.user_id == (e.bot ?? Bot).uin) return false
 
   if (Config.masterQQ.includes(e.user_id)) return false
 
-  logger.info("[Yenai-Plugin]好友撤回")
+  logger.info("[Yenai-Plugin-Cat]好友撤回")
 
   let rawMsg = JSON.parse(await redis.get(redisKeyPrePrivate + e.message_id))
 

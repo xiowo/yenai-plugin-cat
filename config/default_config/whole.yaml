@@ -18,8 +18,6 @@ input: false #对方正在输入
 #其他设置
 notificationsAll: false #全部通知
 Strangers_love: false #陌生人点赞
-sese: false #涩涩
 state: false #状态
 deltime: 600 #删除缓存
-sesepro: false #涩涩增强
 renderScale: 100 #渲染精度

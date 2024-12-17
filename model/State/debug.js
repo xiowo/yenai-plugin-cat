@@ -50,7 +50,7 @@ export class BuildDebug {
       const endTime = Date.now()
       const duration = endTime - startTime
       const ter = logger.green(duration + " ms")
-      logger.debug(`[Yenai-Plugin][state] 获取 ${logger.magenta(name)} 用时: ${ter}`)
+      logger.debug(`[Yenai-Plugin-Cat][state] 获取 ${logger.magenta(name)} 用时: ${ter}`)
       this.debugMessages.push(`${name}: ${duration} ms`)
       return result
     })

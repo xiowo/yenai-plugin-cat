@@ -5,7 +5,6 @@ import { Data } from "../components/index.js"
 import { puppeteer } from "../model/index.js"
 const helpType = {
   群管: "gpAdmin",
-  涩涩: "sese"
 }
 const helpReg = new RegExp(
   `^#?椰奶(插件)?(${Object.keys(helpType).join("|")})?(帮助|菜单|功能)$`
@@ -86,8 +85,8 @@ async function help(e) {
   })
 }
 
-const rodom = async function() {
-  let image = fs.readdirSync("./plugins/yenai-plugin/resources/help/imgs/")
+const rodom = async function () {
+  let image = fs.readdirSync("./plugins/yenai-plugin-cat/resources/help/imgs/")
   let list_img = []
   for (let val of image) {
     list_img.push(val)

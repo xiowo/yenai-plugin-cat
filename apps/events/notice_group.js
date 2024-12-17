@@ -2,7 +2,7 @@ import { common } from "../../model/index.js"
 import { Config } from "../../components/index.js"
 import formatDuration from "../../tools/formatDuration.js"
 
-Bot.on?.("notice.group", async(e) => {
+Bot.on?.("notice.group", async (e) => {
   const bot = e.bot ?? Bot
   let msg
   let forwardMsg
@@ -11,24 +11,24 @@ Bot.on?.("notice.group", async(e) => {
       if (e.user_id === bot.uin) {
         if (!Config.getAlone(e.self_id, e.group_id).groupNumberChange) return false
 
-        logger.info("[Yenai-Plugin]新增群聊")
+        logger.info("[Yenai-Plugin-Cat]新增群聊")
 
         msg = [
           segment.image(`https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`),
           `[通知(${e.self_id}) - 新增群聊]\n`,
-            `新增群号：${e.group_id}`
+          `新增群号：${e.group_id}`
         ]
       } else {
         if (!Config.getAlone(e.self_id, e.group_id).groupMemberNumberChange) return false
 
-        logger.info("[Yenai-Plugin]新增群员")
+        logger.info("[Yenai-Plugin-Cat]新增群员")
 
         msg = [
           segment.image(`https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`),
           `[通知(${e.self_id}) - 新增群员]\n`,
-            `群号：${e.group_id}\n`,
-            `新成员账号：${e.user_id}\n`,
-            `新成员昵称：${e.nickname}`
+          `群号：${e.group_id}\n`,
+          `新成员账号：${e.user_id}\n`,
+          `新成员昵称：${e.nickname}`
         ]
       }
       break
@@ -37,15 +37,15 @@ Bot.on?.("notice.group", async(e) => {
       if (e.dismiss) {
         if (!Config.getAlone(e.self_id, e.group_id).groupNumberChange) return false
 
-        logger.info("[Yenai-Plugin]群聊被解散")
+        logger.info("[Yenai-Plugin-Cat]群聊被解散")
 
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           `[通知(${e.self_id}) - 群聊被解散]\n`,
-            `操作人账号：${e.operator_id}\n`,
-            `解散群号：${e.group_id}`
+          `操作人账号：${e.operator_id}\n`,
+          `解散群号：${e.group_id}`
         ]
       } else if (
         e.user_id === bot.uin &&
@@ -53,15 +53,15 @@ Bot.on?.("notice.group", async(e) => {
       ) {
         if (!Config.getAlone(e.self_id, e.group_id).groupNumberChange) return false
 
-        logger.info("[Yenai-Plugin]机器人被踢")
+        logger.info("[Yenai-Plugin-Cat]机器人被踢")
 
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           `[通知(${e.self_id}) - 机器人被踢]\n`,
-            `操作人账号：${e.operator_id}\n`,
-            `被踢群号：${e.group_id}`
+          `操作人账号：${e.operator_id}\n`,
+          `被踢群号：${e.group_id}`
         ]
       } else if (
         e.user_id === bot.uin &&
@@ -69,45 +69,45 @@ Bot.on?.("notice.group", async(e) => {
       ) {
         if (!Config.getAlone(e.self_id, e.group_id).groupNumberChange) return false
 
-        logger.info("[Yenai-Plugin]机器人退群")
+        logger.info("[Yenai-Plugin-Cat]机器人退群")
 
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           `[通知(${e.self_id}) - 机器人退群]\n`,
-            `退出群号：${e.group_id}`
+          `退出群号：${e.group_id}`
         ]
       } else if (e.operator_id === e.user_id) {
         if (!Config.getAlone(e.self_id, e.group_id).groupMemberNumberChange) return false
 
-        logger.info("[Yenai-Plugin]群员退群")
+        logger.info("[Yenai-Plugin-Cat]群员退群")
 
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           `[通知(${e.self_id}) - 群员退群]\n`,
-            `退群人账号：${e.user_id}\n`,
-            `退群人昵称：${e.member.nickname}\n`,
-            `退群人群名片：${e.member.card}\n`,
-            `退出群号：${e.group_id}`
+          `退群人账号：${e.user_id}\n`,
+          `退群人昵称：${e.member.nickname}\n`,
+          `退群人群名片：${e.member.card}\n`,
+          `退出群号：${e.group_id}`
         ]
       } else if (e.operator_id !== e.user_id) {
         if (!Config.getAlone(e.self_id, e.group_id).groupMemberNumberChange) return false
 
-        logger.info("[Yenai-Plugin]群员被踢")
+        logger.info("[Yenai-Plugin-Cat]群员被踢")
 
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           `[通知(${e.self_id}) - 群员被踢]\n`,
-            `操作人账号：${e.operator_id}\n`,
-            `被踢人账号：${e.user_id}\n`,
-            `被踢人昵称：${e.member.nickname}\n`,
-            `被踢人群名片：${e.member.card}\n`,
-            `被踢群号：${e.group_id}`
+          `操作人账号：${e.operator_id}\n`,
+          `被踢人账号：${e.user_id}\n`,
+          `被踢人昵称：${e.member.nickname}\n`,
+          `被踢人群名片：${e.member.card}\n`,
+          `被踢群号：${e.group_id}`
         ]
       }
       break
@@ -116,27 +116,27 @@ Bot.on?.("notice.group", async(e) => {
     case "admin": {
       if (!Config.getAlone(e.self_id, e.group_id).groupAdminChange) return false
 
-      e.set ? logger.info("[Yenai-Plugin]机器人被设置管理") : logger.info("[Yenai-Plugin]机器人被取消管理")
+      e.set ? logger.info("[Yenai-Plugin-Cat]机器人被设置管理") : logger.info("[Yenai-Plugin-Cat]机器人被取消管理")
       if (e.user_id === bot.uin) {
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           e.set
             ? `[通知(${e.self_id}) - 机器人被设置管理]:\n`
             : `[通知(${e.self_id}) - 机器人被取消管理]:\n`,
-            `被操作群号：${e.group_id}`
+          `被操作群号：${e.group_id}`
         ]
       } else {
-        e.set ? logger.info("[Yenai-Plugin]新增群管理员") : logger.info("[Yenai-Plugin]取消群管理员")
+        e.set ? logger.info("[Yenai-Plugin-Cat]新增群管理员") : logger.info("[Yenai-Plugin-Cat]取消群管理员")
 
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           e.set ? `[通知(${e.self_id}) - 新增群管理员]:\n` : `[通知(${e.self_id}) - 取消群管理员]:\n`,
-            `被操作账号：${e.user_id}\n`,
-            `被操作群号：${e.group_id}`
+          `被操作账号：${e.user_id}\n`,
+          `被操作群号：${e.group_id}`
         ]
       }
       break
@@ -165,26 +165,26 @@ Bot.on?.("notice.group", async(e) => {
       if (e.user_id != bot.uin) return false
 
       if (e.duration == 0) {
-        logger.info("[Yenai-Plugin]机器人被解除禁言")
+        logger.info("[Yenai-Plugin-Cat]机器人被解除禁言")
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           `[通知(${e.self_id}) - 机器人被解除禁言]\n`,
-            `处理人账号：${e.operator_id}\n`,
-            `处理群号：${e.group_id}`
+          `处理人账号：${e.operator_id}\n`,
+          `处理群号：${e.group_id}`
         ]
       } else if (e.user_id === bot.uin) {
-        logger.info("[Yenai-Plugin]机器人被禁言")
+        logger.info("[Yenai-Plugin-Cat]机器人被禁言")
 
         msg = [
           segment.image(
-              `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
           ),
           `[通知(${e.self_id}) - 机器人被禁言]\n`,
-            `禁言人账号：${e.operator_id}\n`,
-            `禁言群号：${e.group_id}\n`,
-            `禁言时长：${forbiddenTime}`
+          `禁言人账号：${e.operator_id}\n`,
+          `禁言群号：${e.group_id}\n`,
+          `禁言时长：${forbiddenTime}`
         ]
       }
       break
@@ -193,16 +193,16 @@ Bot.on?.("notice.group", async(e) => {
     case "transfer": {
       if (!Config.getAlone(e.self_id, e.group_id).groupNumberChange) return false
 
-      logger.info("[Yenai-Plugin]群聊转让")
+      logger.info("[Yenai-Plugin-Cat]群聊转让")
 
       msg = [
         segment.image(
-            `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
+          `https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`
         ),
         `[通知(${e.self_id}) - 群聊转让]\n`,
-          `转让群号：${e.group_id}\n`,
-          `旧群主：${e.operator_id}\n`,
-          `新群主：${e.user_id}`
+        `转让群号：${e.group_id}\n`,
+        `旧群主：${e.operator_id}\n`,
+        `新群主：${e.user_id}`
       ]
       break
     }

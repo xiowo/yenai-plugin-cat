@@ -6,7 +6,7 @@ import cfg from "../../../lib/config/config.js"
 import _ from "lodash"
 
 const Path = process.cwd()
-const Plugin_Name = "yenai-plugin"
+const Plugin_Name = "yenai-plugin-cat"
 const Plugin_Path = `${Path}/plugins/${Plugin_Name}`
 class Config {
   constructor() {
@@ -144,7 +144,7 @@ class Config {
     watcher.on("change", path => {
       delete this.config[key]
       if (typeof Bot == "undefined") return
-      logger.mark(`[Yenai-Plugin][修改配置文件][${type}][${name}]`)
+      logger.mark(`[Yenai-Plugin-Cat][修改配置文件][${type}][${name}]`)
       if (this[`change_${name}`]) {
         this[`change_${name}`]()
       }
