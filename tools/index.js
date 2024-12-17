@@ -1,6 +1,5 @@
 import cronValidate from "./cronValidate.js"
 import formatDuration from "./formatDuration.js"
-import sagiri from "./sagiri.js"
 import translateChinaNum from "./translateChinaNum.js"
 import uploadRecord from "./uploadRecord.js"
 
@@ -12,4 +11,4 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-export { cronValidate, formatDuration, sagiri, translateChinaNum, uploadRecord, sleep }
+export { cronValidate, formatDuration, translateChinaNum, uploadRecord, sleep }

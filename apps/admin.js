@@ -2,21 +2,13 @@ import plugin from "../../../lib/plugins/plugin.js"
 import fs from "fs"
 import _ from "lodash"
 import { Config } from "../components/index.js"
-import { common, setu, puppeteer } from "../model/index.js"
+import { common, puppeteer } from "../model/index.js"
 
 /** 设置项 */
 const OtherCfgType = {
   全部通知: "notificationsAll",
   状态: "state",
   陌生人点赞: "Strangers_love"
-}
-const SeSeCfgType = {
-  涩涩: "sese",
-  涩涩pro: "sesepro",
-  代理: {
-    name: "proxy",
-    key: "switchProxy"
-  }
 }
 const NoticeCfgType = {
   好友消息: "privateMessage",
@@ -40,7 +32,7 @@ const NoticeCfgType = {
 }
 /** 分开开关和数字 */
 const SwitchCfgType = {
-  ...NoticeCfgType, ...OtherCfgType, ...SeSeCfgType
+  ...NoticeCfgType, ...OtherCfgType
 }
 const NumberCfgType = {
   渲染精度: {
@@ -54,9 +46,9 @@ const NumberCfgType = {
 }
 
 /** 支持群单独设置的项 */
-const groupAloneKeys = [ "群消息", "群临时消息", "群撤回", "群管理变动", "群聊列表变动", "群成员变动", "加群通知", "禁言", "匿名", "涩涩", "涩涩pro" ]
+const groupAloneKeys = ["群消息", "群临时消息", "群撤回", "群管理变动", "群聊列表变动", "群成员变动", "加群通知", "禁言", "匿名"]
 /** 支持Bot单独设置的项 */
-const botAloneKeys = [ "好友消息", "好友撤回", "好友申请", "好友列表变动", "输入", "群邀请" ]
+const botAloneKeys = ["好友消息", "好友撤回", "好友申请", "好友列表变动", "输入", "群邀请"]
 
 const SwitchCfgReg = new RegExp(`^#椰奶设置(${Object.keys(SwitchCfgType).join("|")})(单独)?(开启|关闭|取消)$`)
 const NumberCfgReg = new RegExp(`^#椰奶设置(${Object.keys(NumberCfgType).join("|")})(\\d+)秒?$`)
@@ -77,11 +69,7 @@ export class Admin extends plugin {
           fnc: "ConfigNumber"
         },
         {
-          reg: "^#椰奶(sese|涩涩)?设置$",
-          fnc: "Settings"
-        },
-        {
-          reg: "^#椰奶(启用|禁用)全部通知$",
+          reg: "^#椰奶启用|禁用全部通知$",
           fnc: "SetAllNotice"
         }
       ]
@@ -113,17 +101,9 @@ export class Admin extends plugin {
     } else {
       let _key = SwitchCfgType[key]
       Config.modify(_key?.name ?? "whole", _key?.key ?? _key, is)
-
-      // 单独处理
-      if (key == "涩涩pro" && is) Config.modify("whole", "sese", is)
-      if (key == "涩涩" && !is) Config.modify("whole", "sesepro", is)
     }
     // 渲染图片
-    if (Object.keys(SeSeCfgType).includes(key)) {
-      this.SeSe_Settings(e)
-    } else {
-      this.index_Settings(e)
-    }
+    this.index_Settings(e)
   }
 
   // 修改数字设置
@@ -146,19 +126,10 @@ export class Admin extends plugin {
     this.index_Settings(e)
   }
 
-  async Settings(e) {
-    if (!common.checkPermission(e, "master")) return
-    if (/sese|涩涩/.test(e.msg)) {
-      this.SeSe_Settings(e)
-    } else {
-      this.index_Settings(e)
-    }
-  }
-
   // 渲染发送图片
   async index_Settings(e) {
     let data = {}
-    const special = [ "deltime", "renderScale" ]
+    const special = ["deltime", "renderScale"]
     let _cfg = Config.getAlone(e.self_id, e.group_id)
     for (let key in _cfg) {
       if (special.includes(key)) {
@@ -180,39 +151,10 @@ export class Admin extends plugin {
       scale: 1.4
     })
   }
-
-  // 查看涩涩设置
-  async SeSe_Settings(e) {
-    let set = setu.getSeSeConfig(e)
-    let { proxy, pixiv, bika } = Config
-    let { sese, sesepro } = Config.getAlone(e.self_id, e.group_id)
-    let { sese: _sese, sesepro: _sesepro } = Config.getConfig("group")[e.group_id] ?? {}
-    let data = {
-      sese: getStatus(sese, _sese),
-      sesepro: getStatus(sesepro, _sesepro),
-      r18: getStatus(set.r18),
-      cd: Number(set.cd),
-      recall: set.recall ? set.recall : "无",
-      switchProxy: getStatus(proxy.switchProxy),
-      pixivDirectConnection: getStatus(pixiv.pixivDirectConnection),
-      bikaDirectConnection: getStatus(bika.bikaDirectConnection),
-      pixivImageProxy: pixiv.pixivImageProxy,
-      bikaImageProxy: bika.bikaImageProxy,
-      imageQuality: bika.imageQuality
-    }
-    // 渲染图像
-    return await puppeteer.render("admin/sese", {
-      ...data,
-      bg: await rodom()
-    }, {
-      e,
-      scale: 1.4
-    })
-  }
 }
 
 // 随机底图
-const rodom = async function() {
+const rodom = async function () {
   let image = fs.readdirSync("./plugins/yenai-plugin/resources/admin/imgs/bg")
   let listImg = []
   for (let val of image) {
@@ -222,7 +164,7 @@ const rodom = async function() {
   return imgs
 }
 
-const getStatus = function(rote, gpAlone, btAlone) {
+const getStatus = function (rote, gpAlone, btAlone) {
   let badge = ""
   if (gpAlone != undefined) {
     badge = "<span class=\"badge\">群单独</span>"
@@ -252,7 +194,7 @@ function checkNumberValue(value, limit) {
     return value
   }
   // 解析限制条件
-  const [ symbol, limitValue ] = limit.match(/^([<>])?(.+)$/).slice(1)
+  const [symbol, limitValue] = limit.match(/^([<>])?(.+)$/).slice(1)
   const parsedLimitValue = parseFloat(limitValue)
 
   // 检查比较限制条件
@@ -262,7 +204,7 @@ function checkNumberValue(value, limit) {
 
   // 检查范围限制条件
   if (!isNaN(value)) {
-    const [ lowerLimit, upperLimit ] = limit.split("-").map(parseFloat)
+    const [lowerLimit, upperLimit] = limit.split("-").map(parseFloat)
     const clampedValue = Math.min(Math.max(value, lowerLimit || -Infinity), upperLimit || Infinity)
     return clampedValue
   }
