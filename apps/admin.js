@@ -69,7 +69,11 @@ export class Admin extends plugin {
           fnc: "ConfigNumber"
         },
         {
-          reg: "^#椰奶启用|禁用全部通知$",
+          reg: "^#椰奶设置$",
+          fnc: "Settings"
+        },
+        {
+          reg: "^#椰奶(启用|禁用)全部通知$",
           fnc: "SetAllNotice"
         }
       ]
@@ -123,6 +127,11 @@ export class Admin extends plugin {
     for (let i in NoticeCfgType) {
       Config.modify("whole", NoticeCfgType[i], yes)
     }
+    this.index_Settings(e)
+  }
+
+  async Settings(e) {
+    if (!common.checkPermission(e, "master")) return
     this.index_Settings(e)
   }
 
