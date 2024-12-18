@@ -34,8 +34,14 @@ class Config {
   }
 
   async mergeCfg(cfgPath, defPath, name) {
+    // 默认文件未变化不合并
+    let defData = fs.readFileSync(defPath, "utf8")
+    let redisData = await redis.get(`yenai:mergeCfg:${name}`)
+    if (defData == redisData) return
+    redis.set(`yenai:mergeCfg:${name}`, defData)
+
     const userDoc = YAML.parseDocument(fs.readFileSync(cfgPath, "utf8"))
-    const defDoc = YAML.parseDocument(fs.readFileSync(defPath, "utf8"))
+    const defDoc = YAML.parseDocument(defData)
     let isUpdate = false
     const maege = (user, def) => {
       const existingKeys = new Map()
@@ -54,20 +60,7 @@ class Config {
         }
       }
     }
-    const clear = (user, def) => {
-      const defKeys = new Set(def.map(item => item.key.value))
-      for (let i = user.length - 1; i >= 0; i--) {
-        if (!defKeys.has(user[i].key.value)) {
-          logger.info(`[Yenai-Plugin][清除无效配置][${name}][${user[i].key.value}]`)
-          user.splice(i, 1)
-          isUpdate = true
-        } else if (YAML.isMap(user[i].value)) {
-          clear(user[i].value.items, def.find(item => item.key.value === user[i].key.value).value.items)
-        }
-      }
-    }
     maege(userDoc.contents.items, defDoc.contents.items)
-    this.other.autoClearCfg && clear(userDoc.contents.items, defDoc.contents.items)
     let yaml = userDoc.toString()
     isUpdate && fs.writeFileSync(cfgPath, yaml, "utf8")
   }
