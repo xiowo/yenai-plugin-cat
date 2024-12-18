@@ -16,7 +16,7 @@ export function supportGuoba() {
     pluginInfo: {
       name: "yenai-plugin-cat",
       title: "Yenai-Plugin-Cat",
-      author: "@yeyang52",
+      author: "@yeyang52 | MortalCat",
       authorLink: "https://gitee.com/xiowo",
       link: "https://gitee.com/xiowo/yenai-plugin-cat.git",
       isV3: true,
