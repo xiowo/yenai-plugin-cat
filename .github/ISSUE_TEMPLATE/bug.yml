@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         感谢对项目的支持与关注。在提出问题之前，请确保你已查看相关开发或使用文档：
-        - [Yenai-Plugin文档](https://yenai.trss.me)
+        - [Yenai-Plugin-Cat文档](https://yenai.trss.me)
         
   - type: checkboxes
     attributes:
@@ -101,7 +101,7 @@ body:
 
   - type: checkboxes
     attributes:
-      label: Yenai-Plugin是否为当前最新版本？
+      label: Yenai-Plugin-Cat是否为当前最新版本？
       description: 请确保您已使用最新版本的Yenai-Plugin，以避免已知问题。
       options:
         - label: 我最近已使用过`#椰奶更新`命令进行更新至最新版本

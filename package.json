@@ -1,6 +1,6 @@
 {
-  "name": "yenai-plguin",
-  "version": "1.4.0",
+  "name": "yenai-plguin-cat",
+  "version": "1.4.8",
   "description": "Yunzai-Bot插件扩展",
   "main": "index.js",
   "type": "module",
@@ -12,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/yeyang52/yenai-plugin.git"
+    "url": "https://gitee.com/xiowo/yenai-plugin-cat"
   },
   "keywords": [
     "Yunzai-Bot",
-    "yenai-plguin"
+    "yenai-plguin-cat"
   ],
-  "author": "yeyang",
+  "author": "yeyang/MortalCat",
   "license": "GPL-3.0",
   "dependencies": {
     "cheerio": "1.0.0-rc.12",

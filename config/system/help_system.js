@@ -7,11 +7,11 @@
 
 export const helpCfg = {
   title: "椰奶帮助",
-  subTitle: "Yunzai-Bot & Yenai-Plugin",
+  subTitle: "Yunzai-Bot & Yenai-Plugin-Cat",
   columnCount: 3,
   colWidth: 265,
   theme: "all",
-  themeExclude: [ "default" ],
+  themeExclude: ["default"],
   style: {
     fontColor: "#ceb78b",
     descColor: "#eee",

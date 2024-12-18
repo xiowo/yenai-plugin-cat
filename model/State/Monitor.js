@@ -59,7 +59,7 @@ export default new class monitor {
 
     const addDataIfNumber = (chart, value) => {
       if (_.isNumber(value)) {
-        this._addData(chart, [ now, value ])
+        this._addData(chart, [now, value])
       }
     }
 
@@ -87,7 +87,7 @@ export default new class monitor {
       if (_.isEmpty(data)) clearInterval(this.timer)
       _.forIn(data, (value, key) => {
         if (_.isEmpty(value)) {
-          logger.debug(`[Yenai-Plugin][monitor]获取${key}数据失败，停止获取对应数据`)
+          logger.debug(`[Yenai-Plugin-Cat][monitor]获取${key}数据失败，停止获取对应数据`)
           delete this.valueObject[key]
         }
       })

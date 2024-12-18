@@ -1,7 +1,7 @@
 import { puppeteer } from "../../model/index.js"
 import fs from "fs"
 import _ from "lodash"
-export const getStatus = function(rote, badge) {
+export const getStatus = function (rote, badge) {
   let _badge = ""
   if (badge) {
     _badge = `<span class="badge">${badge}</span>`
@@ -31,7 +31,7 @@ export function checkNumberValue(value, limit) {
     return value
   }
   // 解析限制条件
-  const [ symbol, limitValue ] = limit.match(/^([<>])?(.+)$/).slice(1)
+  const [symbol, limitValue] = limit.match(/^([<>])?(.+)$/).slice(1)
   const parsedLimitValue = parseFloat(limitValue)
 
   // 检查比较限制条件
@@ -41,7 +41,7 @@ export function checkNumberValue(value, limit) {
 
   // 检查范围限制条件
   if (!isNaN(value)) {
-    const [ lowerLimit, upperLimit ] = limit.split("-").map(parseFloat)
+    const [lowerLimit, upperLimit] = limit.split("-").map(parseFloat)
     const clampedValue = Math.min(Math.max(value, lowerLimit || -Infinity), upperLimit || Infinity)
     return clampedValue
   }
@@ -60,8 +60,8 @@ export async function sendImg(e, data) {
   })
 }
 
-const rodom = async function() {
-  let image = fs.readdirSync("./plugins/yenai-plugin/resources/admin/imgs/bg")
+const rodom = async function () {
+  let image = fs.readdirSync("./plugins/yenai-plugin-cat/resources/admin/imgs/bg")
   let listImg = []
   for (let val of image) {
     listImg.push(val)

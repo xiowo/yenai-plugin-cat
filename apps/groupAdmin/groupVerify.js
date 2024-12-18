@@ -4,7 +4,7 @@ import _ from "lodash"
 import { sleep } from "../../tools/index.js"
 // 全局
 let temp = {}
-const ops = [ "+", "-" ]
+const ops = ["+", "-"]
 export class GroupVerify extends plugin {
   constructor() {
     super({
@@ -128,8 +128,8 @@ export class GroupVerify extends plugin {
 }
 
 // 进群监听
-Bot.on?.("notice.group.increase", async(e) => {
-  logger.mark(`[Yenai-Plugin][进群验证]收到${e.user_id}的进群事件`)
+Bot.on?.("notice.group.increase", async (e) => {
+  logger.mark(`[Yenai-Plugin-Cat][进群验证]收到${e.user_id}的进群事件`)
   let { openGroup, DelayTime } = Config.groupAdmin.groupVerify
 
   if (!openGroup.includes(e.group_id)) return
@@ -143,7 +143,7 @@ Bot.on?.("notice.group.increase", async(e) => {
 })
 
 // 答案监听
-Bot.on?.("message.group", async(e) => {
+Bot.on?.("message.group", async (e) => {
   let { openGroup, mode, SuccessMsgs } = Config.groupAdmin.groupVerify
 
   if (!openGroup.includes(e.group_id)) return
@@ -176,18 +176,18 @@ Bot.on?.("message.group", async(e) => {
       await e.group.recallMsg(e)
 
       const msg = `\n❎ 验证失败\n你还有「${remainTimes}」次机会\n请发送「${nums[0]} ${operator} ${nums[1]}」的运算结果`
-      return await sendMsg(e, [ segment.at(e.user_id), msg ])
+      return await sendMsg(e, [segment.at(e.user_id), msg])
     }
     clearTimeout(kickTimer)
     clearTimeout(remindTimer)
-    await sendMsg(e, [ segment.at(e.user_id), "\n验证失败，请重新申请" ])
+    await sendMsg(e, [segment.at(e.user_id), "\n验证失败，请重新申请"])
     delete temp[e.user_id + e.group_id]
     return await e.group.kickMember(e.user_id)
   }
 })
 
 // 主动退群
-Bot.on?.("notice.group.decrease", async(e) => {
+Bot.on?.("notice.group.decrease", async (e) => {
   if (!e.group.is_admin && !e.group.is_owner) return
 
   if (!temp[e.user_id + e.group_id]) return
@@ -212,22 +212,22 @@ async function verify(userId, groupId, e) {
   if (!e.group.is_admin && !e.group.is_owner) return
   userId = Number(userId)
   groupId = Number(groupId)
-  logger.mark(`[Yenai-Plugin][进群验证]进行${userId}的验证`)
+  logger.mark(`[Yenai-Plugin-Cat][进群验证]进行${userId}的验证`)
 
   const { times, range, time, remindAtLastMinute } = Config.groupAdmin.groupVerify
   const operator = ops[_.random(0, 1)]
 
-  let [ m, n ] = [ _.random(range.min, range.max), _.random(range.min, range.max) ]
+  let [m, n] = [_.random(range.min, range.max), _.random(range.min, range.max)]
   while (m == n) {
     n = Math.floor(Math.random() * (range.max - range.min + 1)) + range.min
   }
 
-  [ m, n ] = [ m >= n ? m : n, m >= n ? n : m ]
+  [m, n] = [m >= n ? m : n, m >= n ? n : m]
 
   const verifyCode = String(operator === "-" ? m - n : m + n)
-  logger.mark(`[Yenai-Plugin][进群验证]答案：${verifyCode}`)
-  const kickTimer = setTimeout(async() => {
-    sendMsg(e, [ segment.at(userId), "\n验证超时，移出群聊，请重新申请" ])
+  logger.mark(`[Yenai-Plugin-Cat][进群验证]答案：${verifyCode}`)
+  const kickTimer = setTimeout(async () => {
+    sendMsg(e, [segment.at(userId), "\n验证超时，移出群聊，请重新申请"])
 
     delete temp[userId + groupId]
 
@@ -238,11 +238,11 @@ async function verify(userId, groupId, e) {
 
   const shouldRemind = remindAtLastMinute && time >= 120
 
-  const remindTimer = setTimeout(async() => {
+  const remindTimer = setTimeout(async () => {
     if (shouldRemind && temp[userId + groupId].remindTimer) {
       const msg = ` \n验证仅剩最后一分钟\n请发送「${m} ${operator} ${n}」的运算结果\n否则将会被移出群聊`
 
-      await sendMsg(e, [ segment.at(userId), msg ])
+      await sendMsg(e, [segment.at(userId), msg])
     }
     clearTimeout(remindTimer)
   }, Math.abs(time * 1000 - 60000))
@@ -250,10 +250,10 @@ async function verify(userId, groupId, e) {
   const msg = ` 欢迎！\n请在「${time}」秒内发送\n「${m} ${operator} ${n}」的运算结果\n否则将会被移出群聊`
 
   // 消息发送成功才写入
-  if (await sendMsg(e, [ segment.at(userId), msg ])) {
+  if (await sendMsg(e, [segment.at(userId), msg])) {
     temp[userId + groupId] = {
       remainTimes: times,
-      nums: [ m, n ],
+      nums: [m, n],
       operator,
       verifyCode,
       kickTimer,
@@ -267,10 +267,10 @@ async function verify(userId, groupId, e) {
 }
 async function sendMsg(e, msg) {
   const sendMsgFunctions = {
-    reply: async() => e.reply(msg),
-    group: async() => e.group.sendMsg(msg),
-    bot: async() => e.bot.pinkGroup(e.group_id).sendMsg(msg),
-    self_id: async() => Bot[e.self_id].pinkGroup(e.group_id).sendMsg(msg)
+    reply: async () => e.reply(msg),
+    group: async () => e.group.sendMsg(msg),
+    bot: async () => e.bot.pinkGroup(e.group_id).sendMsg(msg),
+    self_id: async () => Bot[e.self_id].pinkGroup(e.group_id).sendMsg(msg)
   }
 
   for (const key in sendMsgFunctions) {
@@ -280,10 +280,10 @@ async function sendMsg(e, msg) {
         let res = await sendFunction()
         return res
       } catch (error) {
-        logger.debug(`[Yenai-Plugin][进群验证]发送消息失败: ${error.message}`)
+        logger.debug(`[Yenai-Plugin-Cat][进群验证]发送消息失败: ${error.message}`)
       }
     }
   }
 
-  throw Error("[Yenai-Plugin][进群验证]未获取到发送消息函数")
+  throw Error("[Yenai-Plugin-Cat][进群验证]未获取到发送消息函数")
 }

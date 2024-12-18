@@ -1,7 +1,7 @@
 import { common } from "../../model/index.js"
 import { Config } from "../../components/index.js"
 
-Bot.on?.("message", async(e) => {
+Bot.on?.("message", async (e) => {
   // 判断是否存在消息
   if (!e?.message?.length) return false
   // 判断是否为机器人消息
@@ -20,16 +20,16 @@ Bot.on?.("message", async(e) => {
         forwardMsg = arr.msg
         e.message = arr.type
       }
-      logger.info("[Yenai-Plugin]群聊消息")
+      logger.info("[Yenai-Plugin-Cat]群聊消息")
       msg = [
         segment.image(`https://p.qlogo.cn/gh/${e.group_id}/${e.group_id}/100`),
-      `[消息(${e.self_id}) - 群聊消息]\n`,
-      `来源群号：${e.group_id}\n`,
-      `来源群名：${e.group_name}\n`,
-      `发送人账号：${e.user_id}\n`,
-      `发送人昵称：${e.sender.nickname}\n`,
-      "消息内容：",
-      ...e.message
+        `[消息(${e.self_id}) - 群聊消息]\n`,
+        `来源群号：${e.group_id}\n`,
+        `来源群名：${e.group_name}\n`,
+        `发送人账号：${e.user_id}\n`,
+        `发送人昵称：${e.sender.nickname}\n`,
+        "消息内容：",
+        ...e.message
       ]
       break
     }
@@ -43,7 +43,7 @@ Bot.on?.("message", async(e) => {
           forwardMsg = arr.msg
           e.message = arr.type
         }
-        logger.info("[Yenai-Plugin]好友消息")
+        logger.info("[Yenai-Plugin-Cat]好友消息")
         msg = [
           segment.image(`https://q1.qlogo.cn/g?b=qq&s=100&nk=${e.user_id}`),
           `[消息(${e.self_id}) - 好友消息]\n`,
@@ -59,7 +59,7 @@ Bot.on?.("message", async(e) => {
           msg.push(
             "\n-------------\n",
             "引用该消息：回复 <内容>\n",
-        `或发送:回复 ${e.user_id} <内容>`
+            `或发送:回复 ${e.user_id} <内容>`
           )
         }
       } else if (e.sub_type === "group") {
@@ -70,7 +70,7 @@ Bot.on?.("message", async(e) => {
           forwardMsg = arr.msg
           e.message = arr.type
         }
-        logger.info("[Yenai-Plugin]群临时消息")
+        logger.info("[Yenai-Plugin-Cat]群临时消息")
         // 发送的消息
         msg = [
           segment.image(`https://q1.qlogo.cn/g?b=qq&s=100&nk=${e.user_id}`),

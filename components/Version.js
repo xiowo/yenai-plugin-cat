@@ -1,7 +1,7 @@
 import fs from "fs"
 import _ from "lodash"
 import cfg from "../../../lib/config/config.js"
-const Plugin_Path = `${process.cwd()}/plugins/yenai-plugin`
+const Plugin_Path = `${process.cwd()}/plugins/yenai-plugin-cat`
 const README_path = `${Plugin_Path}/README.md`
 const CHANGELOG_path = `${Plugin_Path}/CHANGELOG.md`
 const yunzai_ver = `v${cfg.package.version}`
@@ -11,7 +11,7 @@ let changelogs = []
 let currentVersion
 let versionCount = 2
 
-const getLine = function(line) {
+const getLine = function (line) {
   line = line.replace(/(^\s*\*|\r)/g, "")
   line = line.replace(/\s*`([^`]+`)/g, "<span class=\"cmd\">$1")
   line = line.replace(/`\s*/g, "</span>")

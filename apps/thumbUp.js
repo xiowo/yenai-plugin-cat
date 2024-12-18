@@ -35,12 +35,12 @@ export class ThumbUp extends plugin {
     let isSelf = true
 
     // 使用数组和includes方法的正确用法
-    const forbiddenWords = [ "超", "操", "草", "抄", "吵", "炒" ]
+    const forbiddenWords = ["超", "操", "草", "抄", "吵", "炒"]
     if (forbiddenWords.some(word => message.includes(word))) {
       doType = DO_CHAO
     }
 
-    const atWords = [ "他", "她", "它", "TA", "ta", "Ta" ]
+    const atWords = ["他", "她", "它", "TA", "ta", "Ta"]
     if (e.at && atWords.some(word => message.includes(word))) {
       userId = e.at
       isSelf = false
@@ -91,7 +91,7 @@ export class ThumbUp extends plugin {
     const avatar = `https://q1.qlogo.cn/g?b=qq&s=100&nk=${userId}`
     async function getSuccessMsg() {
       const isImg = cfg.successMsg.includes("{{img}}")
-      const successFn = _.sample([ "ganyu", "zan" ])
+      const successFn = _.sample(["ganyu", "zan"])
       const variableSuccess = {
         ...variableMain,
         thumbUpNum: n + "",
@@ -167,7 +167,7 @@ function parseMessage(msg, regex) {
 
     return result
   } catch (error) {
-    logger.error("[Yenai-Plugin][点赞]自定义回复消息错误", error)
+    logger.error("[Yenai-Plugin-Cat][点赞]自定义回复消息错误", error)
     return false
   }
 }

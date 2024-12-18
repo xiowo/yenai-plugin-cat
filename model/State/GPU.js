@@ -40,7 +40,7 @@ export default async function getGPU() {
       ]
     }
   } catch (e) {
-    logger.warn("[Yenai-Plugin][State] 获取GPU失败")
+    logger.warn("[Yenai-Plugin-Cat][State] 获取GPU失败")
     return false
   }
 }
