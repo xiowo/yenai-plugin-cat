@@ -91,26 +91,6 @@ class Config {
     return this.getDefOrConfig("proxy")
   }
 
-  /** pixiv */
-  get pixiv() {
-    return this.getDefOrConfig("pixiv")
-  }
-
-  /** 哔咔 */
-  get bika() {
-    return this.getDefOrConfig("bika")
-  }
-
-  /** 搜图 */
-  get picSearch() {
-    return this.getDefOrConfig("picSearch")
-  }
-
-  /** setu */
-  get setu() {
-    return this.getDefOrConfig("setu")
-  }
-
   /** 状态 */
   get state() {
     return this.getDefOrConfig("state")
@@ -226,12 +206,6 @@ class Config {
       let index = yaml.get(key).indexOf(value)
       yaml.delete(`${key}.${index}`)
     }
-  }
-
-  async change_pixiv() {
-    let pixiv = (await import("../model/index.js")).Pixiv
-    let PixivApi = (await import("../model/Pixiv/api.js")).default
-    pixiv.PixivClient = new PixivApi(this.pixiv.refresh_token)
   }
 }
 export default new Config()
