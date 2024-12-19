@@ -36,14 +36,6 @@ git clone -b master --depth=1 https://gitee.com/xiowo/yenai-plugin-cat.git ./plu
 pnpm install
 ```
 
-2. 必要安装
-
-使用系统状态需安装 systeminformationopen in new window 模块
-
-```sh
-pnpm add systeminformation -w
-```
-
 ## 功能介绍 📖
 
 > Yenai-Plugin-Cat 为您提供以下功能
@@ -165,7 +157,7 @@ Tip：具体可使用 **#椰奶群管帮助** 查看
 
  <img src="resources/img/state.jpg" alt="状态" width = "300" />
 
- 状态Pro
+状态 Pro
 
 <img src="resources/img/statePro.jpg" alt="状态" width = "300" />
 
