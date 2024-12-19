@@ -23,27 +23,19 @@
 - 使用 github
 
 ```sh
-git clone -b master --depth=1 https://github.com/xiowo/yenai-plugin-cat.git ./plugins/yenai-plugin-cat
+git clone -b v2 --depth=1 https://github.com/xiowo/yenai-plugin-cat.git ./plugins/yenai-plugin-cat
 ```
 
 - 使用 gitee
 
 ```sh
-git clone -b master --depth=1 https://gitee.com/xiowo/yenai-plugin-cat.git ./plugins/yenai-plugin-cat
+git clone -b v2 --depth=1 https://gitee.com/xiowo/yenai-plugin-cat.git ./plugins/yenai-plugin-cat
 ```
 
 1. 安装依赖
 
 ```sh
 pnpm install
-```
-
-2. 必要安装
-
-使用系统状态需安装 systeminformationopen in new window 模块
-
-```sh
-pnpm add systeminformation -w
 ```
 
 ## 功能介绍 📖
